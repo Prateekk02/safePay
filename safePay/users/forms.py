@@ -1,7 +1,9 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import CustomUser
 
+
+# Customized Registration Form
 class UserRegistrationForm(UserCreationForm):
     
     email = forms.EmailField(required=True)
@@ -32,3 +34,11 @@ class UserRegistrationForm(UserCreationForm):
             user.save()
         
         return user            
+    
+# Customized Login Form
+class UserLoginForm(AuthenticationForm):
+    phone_no = forms.CharField(max_length=10, required=True, label='Phone Number')
+    password = forms.CharField(widget=forms.PasswordInput)
+    
+    class Meta:
+        fields = ['phone_no', 'password']

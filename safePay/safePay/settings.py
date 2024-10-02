@@ -43,11 +43,14 @@ INSTALLED_APPS = [
     'theme',
     'core',
     'users',
+    'crispy_forms',
+    'crispy_tailwind',
     
     'django_browser_reload',
 ]
 
 # Tailwind config 
+CRISPY_TEMPLATE_PACK = 'tailwind'
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = ['127.0.0.1']
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
@@ -115,6 +118,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    "users.backend.PhoneNoBackend",    ### Custom Backend to validate login form 
+    "django.contrib.auth.backends.ModelBackend",  ## Default backend
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
